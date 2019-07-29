@@ -26,7 +26,7 @@ public class NearestAllocationStrategyTest {
   }
 
   @Test
-  public void returnNullOnNoMoreSlot() throws Exception {
+  public void returnNullOnNoMoreSlotTest() throws Exception {
     this.strategy.getSlot();
     this.strategy.getSlot();
     this.strategy.getSlot();
@@ -34,15 +34,20 @@ public class NearestAllocationStrategyTest {
   }
 
   @Test
-  public void returnNearestSlot() {
+  public void returnNearestSlotTest() {
     assertEquals(this.strategy.getSlot().get(), Integer.valueOf(2));
   }
 
   @Test
-  public void returnNearestSlotAfterSwap() {
+  public void returnNearestSlotAfterSwapTest() {
     assertEquals(this.strategy.getSlot().get(), Integer.valueOf(2));
     assertEquals(this.strategy.getSlot().get(), Integer.valueOf(4));
     assertEquals(this.strategy.getSlot().get(), Integer.valueOf(5));
     assertFalse(this.strategy.getSlot().isPresent());
+  }
+
+  @Test
+  public void returnAvailableSlotToPartTest() {
+    assertEquals(this.strategy.availableSlots(), Integer.valueOf(3));
   }
 }

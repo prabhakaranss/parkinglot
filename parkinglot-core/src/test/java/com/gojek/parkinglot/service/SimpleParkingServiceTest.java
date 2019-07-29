@@ -59,4 +59,24 @@ public class SimpleParkingServiceTest {
     assertFalse(this.parkingService.unPark(1));
   }
 
+  @Test
+  public void getSlotIdForParkedVehicleTest() {
+    List<ParkingSlot> slotList = new ArrayList<>();
+    slotList.add(new ParkingSlot(1));
+    this.strategy.createLot(slotList);
+    Vehicle myCar1 = new Vehicle("KA-01-HH-1234", "WHITE");
+    this.parkingService.park(myCar1);
+    assertTrue(this.parkingService.getSlotIdForRegNumber("KA-01-HH-1234").isPresent());
+  }
+
+  @Test
+  public void getSlotIdForNotParkedVehicleTest() {
+    List<ParkingSlot> slotList = new ArrayList<>();
+    slotList.add(new ParkingSlot(1));
+    this.strategy.createLot(slotList);
+    Vehicle myCar1 = new Vehicle("KA-01-HH-1235", "WHITE");
+    this.parkingService.park(myCar1);
+    assertFalse(this.parkingService.getSlotIdForRegNumber("KA-01-HH-1234").isPresent());
+  }
+
 }

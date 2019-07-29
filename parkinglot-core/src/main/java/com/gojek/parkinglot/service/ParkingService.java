@@ -5,6 +5,7 @@ import com.gojek.parkinglot.strategy.ParkingStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public abstract class ParkingService {
 
@@ -19,4 +20,6 @@ public abstract class ParkingService {
   public abstract boolean park(Vehicle vehicle);
 
   public abstract boolean unPark(Integer slotId);
+
+  public abstract Optional<Integer> getSlotIdForRegNumber(String regNumber);
 }

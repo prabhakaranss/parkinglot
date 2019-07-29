@@ -4,6 +4,7 @@ import com.gojek.parkinglot.model.Vehicle;
 import com.gojek.parkinglot.service.ParkingService;
 import com.gojek.parkinglot.strategy.ParkingStrategy;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class SimpleParkingService extends ParkingService {
@@ -32,5 +33,12 @@ public class SimpleParkingService extends ParkingService {
     }
 
     return false;
+  }
+
+  @Override
+  public Optional<Integer> getSlotIdForRegNumber(String regNumber) {
+    return this.parkedSlots.entrySet().stream()
+        .filter(parkingEntry -> parkingEntry.getValue().getRegNumber().equals(regNumber))
+        .findFirst().map(Map.Entry::getKey);
   }
 }
