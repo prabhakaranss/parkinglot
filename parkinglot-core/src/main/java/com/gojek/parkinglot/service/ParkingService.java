@@ -1,9 +1,11 @@
 package com.gojek.parkinglot.service;
 
+import com.gojek.parkinglot.model.ParkingEntry;
 import com.gojek.parkinglot.model.Vehicle;
 import com.gojek.parkinglot.strategy.ParkingStrategy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,4 +24,6 @@ public abstract class ParkingService {
   public abstract boolean unPark(Integer slotId);
 
   public abstract Optional<Integer> getSlotIdForRegNumber(String regNumber);
+
+  public abstract List<ParkingEntry> getParkingStatus();
 }

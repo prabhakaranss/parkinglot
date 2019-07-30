@@ -4,9 +4,11 @@ import com.gojek.parkinglot.model.ParkingSlot;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class NearestAllocationStrategy implements ParkingStrategy {
 
@@ -41,5 +43,13 @@ public class NearestAllocationStrategy implements ParkingStrategy {
   @Override
   public Integer availableSlots() {
     return this.freeSlots.size();
+  }
+
+  @Override
+  public List<ParkingSlot> getAllocatedSlots() {
+    return this.allocatedSlots
+        .stream()
+        .map(slotId -> this.slots.get(slotId))
+        .collect(Collectors.toList());
   }
 }

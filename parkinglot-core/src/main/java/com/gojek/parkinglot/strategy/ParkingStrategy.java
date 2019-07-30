@@ -3,6 +3,7 @@ package com.gojek.parkinglot.strategy;
 import com.gojek.parkinglot.model.ParkingSlot;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface ParkingStrategy {
@@ -29,5 +30,11 @@ public interface ParkingStrategy {
    * @return returns available slots count
    */
   Integer availableSlots();
+
+  /**
+   *
+   * @return allocated parkingSlots identifiers
+   */
+  List<ParkingSlot> getAllocatedSlots();
 
 }
