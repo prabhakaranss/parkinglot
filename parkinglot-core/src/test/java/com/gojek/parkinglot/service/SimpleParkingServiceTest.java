@@ -99,7 +99,50 @@ public class SimpleParkingServiceTest {
     assertEquals(parkingStatus.get(1).getParkingSlot().getId().intValue(), 2);
     assertEquals(parkingStatus.get(1).getVehicle().getRegNumber(), "KA-01-HH-1236");
     assertEquals(parkingStatus.get(1).getVehicle().getColor(), "Black");
-
   }
 
+  @Test
+  public void getRegNumberForColorTest() {
+    List<ParkingSlot> slotList = new ArrayList<>();
+    slotList.add(new ParkingSlot(2));
+    slotList.add(new ParkingSlot(1));
+    slotList.add(new ParkingSlot(5));
+    this.strategy.createLot(slotList);
+    Vehicle myCar1 = new Vehicle("KA-01-HH-1235", "WHITE");
+    this.parkingService.park(myCar1);
+    Vehicle myCar2 = new Vehicle("KA-01-HH-1236", "Black");
+    this.parkingService.park(myCar2);
+    Vehicle myCar3 = new Vehicle("KA-01-HH-1237", "WHITE");
+    this.parkingService.park(myCar3);
+    List<String> regNumberList = this.parkingService.getAllRegNumber("WHITE");
+    assertEquals(regNumberList.size(), 2);
+    assertEquals(regNumberList.get(0), "KA-01-HH-1235");
+    assertEquals(regNumberList.get(1), "KA-01-HH-1237");
+    regNumberList = this.parkingService.getAllRegNumber("Blue");
+    assertEquals(regNumberList.size(), 0);
+  }
+
+  @Test
+  public void getParkingSlotForColorTest() {
+    List<ParkingSlot> slotList = new ArrayList<>();
+    slotList.add(new ParkingSlot(10));
+    slotList.add(new ParkingSlot(3));
+    slotList.add(new ParkingSlot(5));
+    this.strategy.createLot(slotList);
+    Vehicle myCar1 = new Vehicle("KA-01-HH-1235", "WHITE");
+    this.parkingService.park(myCar1);
+    Vehicle myCar2 = new Vehicle("KA-01-HH-1236", "Black");
+    this.parkingService.park(myCar2);
+    Vehicle myCar3 = new Vehicle("KA-01-HH-1237", "WHITE");
+    this.parkingService.park(myCar3);
+    List<Integer> matchedSlotList = this.parkingService.getAllSlot("WHITE");
+    assertEquals(matchedSlotList.size(), 2);
+    assertEquals(matchedSlotList.get(0).intValue(), 3);
+    assertEquals(matchedSlotList.get(1).intValue(), 10);
+    matchedSlotList = this.parkingService.getAllSlot("Black");
+    assertEquals(matchedSlotList.size(), 1);
+    assertEquals(matchedSlotList.get(0).intValue(), 5);
+    matchedSlotList = this.parkingService.getAllSlot("Blue");
+    assertEquals(matchedSlotList.size(), 0);
+  }
 }

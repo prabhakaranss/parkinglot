@@ -26,4 +26,8 @@ public abstract class ParkingService {
   public abstract Optional<Integer> getSlotIdForRegNumber(String regNumber);
 
   public abstract List<ParkingEntry> getParkingStatus();
+
+  public abstract List<Integer> getAllSlot(String color);
+
+  public abstract List<String> getAllRegNumber(String color);
 }

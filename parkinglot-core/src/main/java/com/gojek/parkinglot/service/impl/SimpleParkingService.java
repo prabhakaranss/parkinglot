@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SimpleParkingService extends ParkingService {
 
@@ -52,5 +53,24 @@ public class SimpleParkingService extends ParkingService {
         .stream()
         .map(slot -> new ParkingEntry(slot, this.parkedSlots.get(slot.getId())))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<Integer> getAllSlot(String color) {
+    return this.parkingStrategy.getAllAllocatedSlotId()
+        .stream()
+        .filter(slotId -> this.parkedSlots.get(slotId).getColor().equalsIgnoreCase(color))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<String> getAllRegNumber(String color) {
+    return this.parkingStrategy.getAllAllocatedSlotId().stream().flatMap(slotId -> {
+      Vehicle vehicle = this.parkedSlots.get(slotId);
+      if (vehicle.getColor().equalsIgnoreCase(color)) {
+        return Stream.of(vehicle.getRegNumber());
+      }
+      return Stream.empty();
+    }).collect(Collectors.toList());
   }
 }

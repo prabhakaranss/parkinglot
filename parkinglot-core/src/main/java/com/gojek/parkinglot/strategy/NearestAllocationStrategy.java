@@ -2,6 +2,7 @@ package com.gojek.parkinglot.strategy;
 
 import com.gojek.parkinglot.model.ParkingSlot;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -51,5 +52,10 @@ public class NearestAllocationStrategy implements ParkingStrategy {
         .stream()
         .map(slotId -> this.slots.get(slotId))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<Integer> getAllAllocatedSlotId() {
+    return new ArrayList<>(this.allocatedSlots);
   }
 }

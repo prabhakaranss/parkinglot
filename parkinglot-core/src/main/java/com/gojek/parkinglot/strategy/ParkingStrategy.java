@@ -37,4 +37,10 @@ public interface ParkingStrategy {
    */
   List<ParkingSlot> getAllocatedSlots();
 
+  /**
+   * return all allocated slot identifiers
+   * @return
+   */
+  List<Integer> getAllAllocatedSlotId();
+
 }
