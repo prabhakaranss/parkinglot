@@ -18,14 +18,14 @@ public class SimpleParkingService extends ParkingService {
   }
 
   @Override
-  public boolean park(Vehicle vehicle) {
+  public Optional<Integer> park(Vehicle vehicle) {
     Optional<Integer> nextSlot = this.parkingStrategy.getSlot();
     if (!nextSlot.isPresent()) {
-      return false;
+      return Optional.empty();
     }
 
     this.parkedSlots.put(nextSlot.get(), vehicle);
-    return true;
+    return nextSlot;
   }
 
   @Override

@@ -19,7 +19,7 @@ public abstract class ParkingService {
     this.parkedSlots = new HashMap<>();
   }
 
-  public abstract boolean park(Vehicle vehicle);
+  public abstract Optional<Integer> park(Vehicle vehicle);
 
   public abstract boolean unPark(Integer slotId);
 

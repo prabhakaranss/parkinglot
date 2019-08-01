@@ -32,14 +32,14 @@ public class SimpleParkingServiceTest {
     slotList.add(new ParkingSlot(1));
     this.strategy.createLot(slotList);
     Vehicle myCar1 = new Vehicle("KA-01-HH-1234", "WHITE");
-    assertTrue(this.parkingService.park(myCar1));
+    assertTrue(this.parkingService.park(myCar1).isPresent());
     assertTrue(this.parkingService.unPark(1));
   }
 
   @Test
   public void parkVehicleNoSlotsTest() {
     Vehicle myCar1 = new Vehicle("KA-01-HH-1234", "WHITE");
-    assertFalse(this.parkingService.park(myCar1));
+    assertFalse(this.parkingService.park(myCar1).isPresent());
   }
 
   @Test
@@ -48,9 +48,9 @@ public class SimpleParkingServiceTest {
     slotList.add(new ParkingSlot(1));
     this.strategy.createLot(slotList);
     Vehicle myCar1 = new Vehicle("KA-01-HH-1234", "WHITE");
-    assertTrue(this.parkingService.park(myCar1));
+    assertTrue(this.parkingService.park(myCar1).isPresent());
     Vehicle myCar2 = new Vehicle("KA-01-HR-1234", "WHITE");
-    assertFalse(this.parkingService.park(myCar2));
+    assertFalse(this.parkingService.park(myCar2).isPresent());
   }
 
   @Test
