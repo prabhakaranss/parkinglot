@@ -1,0 +1,3 @@
+#!/bin/sh
+#build application
+mvn clean install

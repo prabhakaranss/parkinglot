@@ -1,0 +1,11 @@
+#!/bin/sh
+arg1=$1
+
+if [ -z "$1" ] ; then
+        java -jar parkinglot-cli-client/target/parkinglot-cli-client-1.0-SNAPSHOT.jar
+        exit 1
+
+else
+	java -jar parkinglot-cli-client/target/parkinglot-cli-client-1.0-SNAPSHOT.jar $arg1
+
+fi
