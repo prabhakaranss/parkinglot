@@ -5,6 +5,9 @@ public class Vehicle {
   private String color;
 
   public Vehicle(String regNumber, String color) {
+    if (regNumber == null || color == null) {
+      throw new IllegalArgumentException("Vehicle reg-number and color is mandatory");
+    }
     this.regNumber = regNumber;
     this.color = color;
   }
