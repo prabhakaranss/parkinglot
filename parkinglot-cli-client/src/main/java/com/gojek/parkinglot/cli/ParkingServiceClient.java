@@ -3,6 +3,7 @@ package com.gojek.parkinglot.cli;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
@@ -15,22 +16,26 @@ public class ParkingServiceClient {
         case 0:
           boolean canContinue = true;
           Command command;
-          while (canContinue) {
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-              String[] inputs = bufferedReader.readLine().trim().split(" ");
-              command = Command.fromText(inputs[0]);
+          try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+            while (canContinue) {
+              try {
+                String[] inputs = bufferedReader.readLine().trim().split(" ");
+                command = Command.fromText(inputs[0]);
 
-              switch (command) {
-                case EXIT:
-                  canContinue = false;
-                  break;
+                switch (command) {
+                  case EXIT:
+                    canContinue = false;
+                    break;
 
-                default:
-                  cliProcessor.processCommand(command, Arrays.copyOfRange(inputs, 1, inputs.length));
+                  default:
+                    cliProcessor.processCommand(command, Arrays.copyOfRange(inputs, 1, inputs.length));
+                }
+              } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input. Please input valid command");
               }
-            } catch (IllegalArgumentException e) {
-              System.out.println("Invalid input. Please input valid command");
             }
+          } catch (IOException e) {
+            System.out.println("Unknown error occurred:"+e.getMessage());
           }
           break;
 

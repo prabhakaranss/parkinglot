@@ -11,7 +11,7 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>parkinglot-core</module>
-    <module>functional-tests</module>
     <module>parkinglot-cli-client</module>
+    <module>functional-tests</module>
   </modules>
 </project>
