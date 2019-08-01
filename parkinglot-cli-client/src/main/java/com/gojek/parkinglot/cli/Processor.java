@@ -12,17 +12,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Processor {
+class Processor {
 
   private ParkingStrategy parkingStrategy;
   private ParkingService parkingService;
 
-  public Processor() {
+  Processor() {
     this.parkingStrategy = new NearestAllocationStrategy();
     this.parkingService = new SimpleParkingService(this.parkingStrategy);
   }
 
-  public void processCommand(Command command, String[] args) {
+  void processCommand(Command command, String[] args) {
     switch (command) {
       case CREATE_LOT:
         if (args.length != 1) {
