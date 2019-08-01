@@ -8,4 +8,4 @@ WORKDIR /opt/app
 
 
 # Start up the application.
-CMD ["mvn", "clean", "install"]
+CMD ["/bin/sh"]
