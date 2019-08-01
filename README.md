@@ -41,5 +41,13 @@ Project is created with:
   
     `./bin/parking_lot file_input.txt`
     
+## Docker setup (Optional)
+
+### build docker images
+  `docker build -t parking-lot .`
+  
+### run docker container in interactive
+  `docker run -it parking-lot`    
+    
 ##Author
   - Prabhakaran Srinivasan
